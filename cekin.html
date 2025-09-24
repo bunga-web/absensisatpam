@@ -226,7 +226,7 @@
   data: $form.serialize(),
   success: function () {
     // Kalau berhasil, langsung ubah tombol
-    $submitBtn.prop("disabled", true).text("Terkirim ✅");
+    $submitBtn.prop("disabled", true).text("Terkirim");
     showMessage("✅ Terima kasih, absensi Anda telah tercatat.", "success");
     $form[0].reset();
   },
@@ -256,4 +256,5 @@
 </body>
 
 </html>
+
 
