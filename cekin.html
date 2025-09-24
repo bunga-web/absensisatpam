@@ -220,23 +220,23 @@
 
           $submitBtn.prop("disabled", true).text("Mengirim...");
 
-          $.ajax({
-            url: scriptURL,
-            method: "POST",
-            data: $form.serialize(),
-            success: function (data) {
-              const res = typeof data === "string" ? JSON.parse(data) : data;
-              localStorage.setItem("checkinId", res.uniqueId);
-              showMessage("✅ Terima kasih, absensi Anda telah tercatat.", "success");
-              $form[0].reset();
-            },
-            error: function () {
-              showMessage("Terjadi kesalahan. Silakan coba lagi.", "error");
-            },
-            complete: function () {
-              $submitBtn.prop("disabled", false).text("Kirim");
-            },
-          });
+       $.ajax({
+  url: scriptURL,
+  method: "POST",
+  data: $form.serialize(),
+  success: function () {
+    // Kalau berhasil, langsung ubah tombol
+    $submitBtn.prop("disabled", true).text("Terkirim ✅");
+    showMessage("✅ Terima kasih, absensi Anda telah tercatat.", "success");
+    $form[0].reset();
+  },
+  error: function () {
+    // Kalau gagal
+    $submitBtn.prop("disabled", false).text("Kirim");
+    showMessage("❌ Terjadi kesalahan. Silakan coba lagi.", "error");
+  }
+});
+
         },
         function (err) {
           showMessage("❌ Gagal mendeteksi lokasi: " + err.message, "error");
@@ -256,3 +256,4 @@
 </body>
 
 </html>
+
